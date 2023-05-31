@@ -1,6 +1,6 @@
 # xmlctl
 
-This application uploads, reads, parses and displays the parse xml file
+This application uploads, reads, parses and displays the parsed xml file
 
 ## DOCUMENTATION
 ```
