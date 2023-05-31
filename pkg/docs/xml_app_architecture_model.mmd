@@ -1,0 +1,60 @@
+---
+title: "AppConfig Service C4 Model: Component"
+---
+flowchart TD
+  classDef container fill:#1168bd,stroke:#0b4884,color:#ffffff
+  classDef externalSystem fill:#666,stroke:#0b4884,color:#ffffff
+  classDef component fill:#85bbf0,stroke:#5d82a8,color:#000000
+
+  Client["Cli
+  [Terminal CommandLine]
+
+  Used by the user to upload and display
+  xml documents"]
+
+  HD["Handler Component
+  [Handler Service]
+
+  Opens, reads and instantiates
+  xml files"]
+
+  MD["Model Component
+  [Model Service]
+
+  creates application config
+  instance"]
+
+  DS["Domain Component 
+  [Domain Service]
+
+  talks to the Repository 
+  service to upload and read app config"]
+
+  RS["Repository Component
+  [Repository Service]
+
+  talks to Postgresql service to
+  store and retrieve app config"]
+
+  PS["Postgresql Service
+  [Postgresql]
+
+  stores and retrieve app config"]
+
+  Client-- "Submits xml file to\n" --->HD
+  HD-- "Creates and instance of app config\n" --->MD
+  HD-- "Sends app config to\n" --->DS
+  DS-- "Sends app config to\n" --->RS
+  RS-- "Sends app config to\n" --->PS
+
+  subgraph appconfig-service[AppConfig Service]
+    HD--->MD
+	HD--->DS
+	DS--->RS
+  end
+
+  class PS container
+  class Client externalSystem
+  class HD,MD,DS,RS component
+  style appconfig-service fill:none,stroke:#CCC,stroke-width:2px
+  style appconfig-service color:#fff,stroke-dasharray: 5 5

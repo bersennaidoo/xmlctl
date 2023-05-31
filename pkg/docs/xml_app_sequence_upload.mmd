@@ -1,0 +1,14 @@
+---
+title: AppConfig Uploads Flow
+---
+sequenceDiagram
+  autonumber
+  actor CommandLine
+  participant AppConfig Service
+  participant Postgresql
+
+  CommandLine->>AppConfig Service: Upload
+  AppConfig Service->>Postgresql: Create
+  Postgresql-->>AppConfig Service: Created
+  AppConfig Service-->>CommandLine: Created
+

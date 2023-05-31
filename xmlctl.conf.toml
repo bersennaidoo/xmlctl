@@ -1,0 +1,12 @@
+title = "Xmlctl configuration file"
+
+[author]
+name = "Bersen Naidoo"
+
+[database]
+dsn = "postgres://postgres:bersen@localhost/xmldb"
+
+[server]
+port = 4000
+env = "production"
+

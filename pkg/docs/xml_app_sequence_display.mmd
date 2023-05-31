@@ -1,0 +1,13 @@
+---
+title: AppConfig Display Flow
+---
+sequenceDiagram
+  autonumber
+  actor CommandLine
+  participant AppConfig Service
+  participant Postgresql
+
+  CommandLine->>AppConfig Service: Display xml info
+  AppConfig Service->>Postgresql: Get app
+  Postgresql-->>AppConfig Service: Send app
+  AppConfig Service-->>CommandLine: Displays info
