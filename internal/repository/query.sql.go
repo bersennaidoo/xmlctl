@@ -21,7 +21,7 @@ RETURNING name, config
 
 type CreateParams struct {
 	Name   string         `json:"name"`
-	Config interface{}    `json:"config"`
+	Config []byte    `json:"config"`
 }
 
 func (q *Queries) Create(ctx context.Context, arg CreateParams) (Xmld, error) {

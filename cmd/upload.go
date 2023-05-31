@@ -53,8 +53,7 @@ var uploadCmd = &cobra.Command{
 			Fname:   filename,
 		}
 
-		app := hand.UploadFile()
-		fmt.Println(string(app.Config.([]byte)))
+		_ = hand.UploadFile()
     return nil
 	},
 }

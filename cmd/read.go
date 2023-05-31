@@ -1,40 +1,59 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
+  "database/sql"
 
+  _ "github.com/lib/pq"
+
+	"github.com/bersennaidoo/xmlctl/internal/application/fsys"
+  "github.com/bersennaidoo/xmlctl/pkg/configuration"
+	"github.com/bersennaidoo/xmlctl/internal/repository"
+  
 	"github.com/spf13/cobra"
 )
 
-// readCmd represents the read command
+// uploadCmd represents the upload command
 var readCmd = &cobra.Command{
 	Use:   "read",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "reads a xml application configuration",
+	Long: `reads a xml application configuration file by
+  by application --name or -n appname.
+  
+  Examples:
+  ./xmlctl read --name app1`,
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("read called")
+	RunE: func(cmd *cobra.Command, args []string) error {
+		name, err := cmd.Flags().GetString("name")
+		if err != nil {
+			fmt.Printf("error retrieving name: %s\n", err.Error())
+			return err
+		}
+		fmt.Println("reading", name, "...")
+
+    dsn := configuration.NewXmldConfig()
+
+    db, _ := sql.Open("postgres", dsn.Dsn)
+
+		qsrv := repository.New(db)
+
+		hand := fsys.Handler{
+			Qsrv:    qsrv,
+			AppName: name,
+		}
+
+		hand.ReedFile()
+    return nil
 	},
 }
 
 func init() {
+	readCmd.Flags().StringP("name", "n", "", "Name of application")
+	//uploadCmd.MarkPersistentFlagRequired("filename")
+	//uploadCmd.MarkPersistentFlagRequired("name")
 	rootCmd.AddCommand(readCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// readCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// readCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
+

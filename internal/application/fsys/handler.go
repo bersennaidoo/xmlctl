@@ -5,6 +5,7 @@ import (
   "context"
 
   "github.com/bersennaidoo/xmlctl/internal/repository"
+  "github.com/bersennaidoo/xmlctl/pkg/utils"
 )
 
 type Handler struct {
@@ -22,7 +23,7 @@ func NewHandler(qsrv *repository.Queries, fname string, appname string) *Handler
   }
 }
 
-func (h *Handler) UploadFile() repository.Xmld {
+func (h Handler) UploadFile() repository.Xmld {
   data, _ := os.ReadFile(h.Fname)
 
   xmld := repository.CreateParams{
@@ -38,4 +39,21 @@ func (h *Handler) UploadFile() repository.Xmld {
 
   return app
 }
+
+func (h Handler) ReedFile() {
+  ctx, cancel := context.WithCancel(context.Background())
+
+  defer cancel()
+
+  app, _ := h.Qsrv.Get(ctx, h.AppName)
+
+  xmlp := utils.XmlParser{
+    Data: app.Config,
+  }
+
+  xmlp.Parse()
+}
+
+
+
 

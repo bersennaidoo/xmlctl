@@ -10,5 +10,5 @@ import (
 
 type Xmld struct {
 	Name   string         `json:"name"`
-	Config interface{}    `json:"config"`
+	Config []byte   `json:"config"`
 }
