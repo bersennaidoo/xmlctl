@@ -2,7 +2,7 @@
 
 #### Domain Model
 
-![Markdown Logo](./xml_domain_model.png "Markdown Logo")
+![Markdown Logo](./png/xml_domain_model.png "Markdown Logo")
 
 #### Requirements
 
@@ -18,7 +18,7 @@
 
 	Scenario: User uploads a xml configuration file from the commandline
 
-![Markdown Logo](./xml_app_sequence_upload.png "Markdown Logo")
+![Markdown Logo](./png/xml_app_sequence_upload.png "Markdown Logo")
 
 #### Display Usecase
 
@@ -28,10 +28,10 @@
 	 
 	Scenario: Users displays information on terminal from an xml configuration file
 	
-![Markdown Logo](./xml_app_sequence_display.png "Markdown Logo")
+![Markdown Logo](./png/xml_app_sequence_display.png "Markdown Logo")
 
 
 #### Architecture Model
 
-![Markdown Logo](./xml_app_architecture_model.png "Markdown Logo")
+![Markdown Logo](./png/xml_app_architecture_model.png "Markdown Logo")
 
