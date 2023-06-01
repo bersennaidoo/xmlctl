@@ -10,10 +10,13 @@ The schema in pkg/schema is for the database table.
 Create database in postgresql and apply schema from ./pkg/schema.
 
 Configuration for database is in ./xmlctl.conf.toml
+
+The binary for application is in bin directory for linux.
 ```
 ./pkg/docs
 ./pkg/schema
 ./xmlctl.conf.toml
+./bin/xmlctl
 ```
 
 ## USAGE
