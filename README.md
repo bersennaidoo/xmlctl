@@ -3,7 +3,9 @@
 This application uploads, reads, parses and displays the parsed xml file
 
 ## DOCUMENTATION
-The models tells you what the application does and schema for database table
+The models in pkg/docs tells you what the application. 
+
+The schema in pkg/schema is for the database table.
 
 Create database in postgresql and apply schema from ./pkg/schema.
 
