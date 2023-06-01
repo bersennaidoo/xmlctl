@@ -4,7 +4,7 @@ title = "Xmlctl configuration file"
 name = "Bersen Naidoo"
 
 [database]
-dsn = "postgres://postgres:bersen@localhost/xmldb"
+dsn = "postgresql://bersen:bersen@localhost/xmldb"
 
 [server]
 port = 4000
